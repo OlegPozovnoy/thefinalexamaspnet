@@ -13,12 +13,28 @@ namespace VbFinal.Models
 
         void IMockVbPlayer.Delete(VbPlayer vbPlayer)
         {
-            throw new NotImplementedException();
+            db.VbPlayers.Remove(vbPlayer);
+            db.SaveChanges();
         }
 
         VbPlayer IMockVbPlayer.Save(VbPlayer vbPlayer)
         {
-            throw new NotImplementedException();
+            if (vbPlayer.VbPlayerId == 0)
+            {
+                db.VbPlayers.Add(vbPlayer);
+            }
+            else
+            {
+                db.Entry(vbPlayer).State = System.Data.Entity.EntityState.Modified;
+            }
+
+            db.SaveChanges();
+            return vbPlayer;
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
         }
     }
 }

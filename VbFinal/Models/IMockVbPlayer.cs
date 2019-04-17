@@ -11,5 +11,6 @@ namespace VbFinal.Models
         IQueryable<VbPlayer> VbPlayers { get; }
         VbPlayer Save(VbPlayer vbPlayer);
         void Delete(VbPlayer vbPlayer);
+        void Dispose();
     }
 }

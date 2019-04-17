@@ -12,7 +12,7 @@ namespace VbFinal.Controllers
 {
     public class VbPlayersController : Controller
     {
-        private DbModel db = new DbModel();
+        //private DbModel db = new DbModel();
         private IMockVbPlayer db;
 
         public VbPlayersController()
@@ -40,7 +40,7 @@ namespace VbFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VbPlayer vbPlayer = db.VbPlayers.Find(id);
+            VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id);
             if (vbPlayer == null)
             {
                 return HttpNotFound();
@@ -63,8 +63,9 @@ namespace VbFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.VbPlayers.Add(vbPlayer);
-                db.SaveChanges();
+                //db.VbPlayers.Add(vbPlayer);
+                //db.SaveChanges();
+                db.Save(vbPlayer);
                 return RedirectToAction("Index");
             }
 
@@ -78,7 +79,7 @@ namespace VbFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VbPlayer vbPlayer = db.VbPlayers.Find(id);
+            VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id);
             if (vbPlayer == null)
             {
                 return HttpNotFound();
@@ -95,8 +96,9 @@ namespace VbFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vbPlayer).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(vbPlayer).State = EntityState.Modified;
+                //db.SaveChanges();
+                db.Save(vbPlayer);
                 return RedirectToAction("Index");
             }
             return View(vbPlayer);
@@ -109,7 +111,7 @@ namespace VbFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VbPlayer vbPlayer = db.VbPlayers.Find(id);
+            VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id); 
             if (vbPlayer == null)
             {
                 return HttpNotFound();
@@ -122,9 +124,10 @@ namespace VbFinal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VbPlayer vbPlayer = db.VbPlayers.Find(id);
-            db.VbPlayers.Remove(vbPlayer);
-            db.SaveChanges();
+            VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id);
+            //db.VbPlayers.Remove(vbPlayer);
+            //db.SaveChanges();
+            db.Delete(vbPlayer);
             return RedirectToAction("Index");
         }
 
