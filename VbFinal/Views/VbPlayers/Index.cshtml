@@ -1,0 +1,28 @@
+﻿@model IEnumerable<VbFinal.Models.VbPlayer>
+
+@{
+    ViewBag.Title = "Players";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Players</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+
+
+@foreach (var item in Model) {
+    <div class="col-md-6 text-center list-group">
+        <div class="list-group-item active">
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Lastname)
+        </div>
+        <div class="list-group-item">
+            @Html.ActionLink("Edit", "Edit", new { id=item.VbPlayerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VbPlayerId }) 
+        </div>
+    </div>
+}
+
+</div>
