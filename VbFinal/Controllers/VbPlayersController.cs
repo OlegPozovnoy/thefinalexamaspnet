@@ -30,7 +30,7 @@ namespace VbFinal.Controllers
         public ActionResult Index()
         {
             var vbPlayers = db.VbPlayers;
-            return View(vbPlayers.ToList());
+            return View("Index", vbPlayers.ToList());
         }
 
         // GET: VbPlayers/Details/5
@@ -38,12 +38,14 @@ namespace VbFinal.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
             VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id);
             if (vbPlayer == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return View("Error");
             }
             return View(vbPlayer);
         }
@@ -77,14 +79,16 @@ namespace VbFinal.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
             VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id);
             if (vbPlayer == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return View("Error");
             }
-            return View(vbPlayer);
+            return View("Edit", vbPlayer);
         }
 
         // POST: VbPlayers/Edit/5
@@ -101,7 +105,7 @@ namespace VbFinal.Controllers
                 db.Save(vbPlayer);
                 return RedirectToAction("Index");
             }
-            return View(vbPlayer);
+            return View("Edit",vbPlayer);
         }
 
         // GET: VbPlayers/Delete/5
@@ -109,12 +113,14 @@ namespace VbFinal.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
             VbPlayer vbPlayer = db.VbPlayers.SingleOrDefault(c => c.VbPlayerId == id); 
             if (vbPlayer == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return View("Error");
             }
             return View(vbPlayer);
         }
