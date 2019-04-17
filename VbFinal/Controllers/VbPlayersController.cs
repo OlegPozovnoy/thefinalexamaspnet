@@ -10,6 +10,7 @@ using VbFinal.Models;
 
 namespace VbFinal.Controllers
 {
+   // [Authorize]
     public class VbPlayersController : Controller
     {
         //private DbModel db = new DbModel();

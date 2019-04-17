@@ -32,7 +32,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Photo)
+            <!--@Html.DisplayFor(model => model.Photo) -->
+            @if (Model.Photo != null)
+            {
+                <img src="@Model.Photo" class="thumb" alt=" @Model.FirstName   @Model.Lastname" />
+            }
         </dd>
     </dl>
 </div>
