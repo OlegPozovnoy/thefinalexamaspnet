@@ -52,14 +52,11 @@ namespace VbFinal.Tests.Controllers
 
         }
 
-
-
         //b.IndexValidLoadsVbPlayers – Returns a list of all VbPlayers
 
         [TestMethod]
         public void IndexValidLoadsVbPlayers()
         {
-
             var results = (List<VbPlayer>)((ViewResult)controller.Index()).Model;
             CollectionAssert.AreEqual(vbPlayers.ToList(), results);
         }
